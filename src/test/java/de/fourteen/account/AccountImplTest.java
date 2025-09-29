@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.catchThrowable;
-import static org.junit.jupiter.api.Assertions.*;
+import static de.fourteen.account.AccountAssert.assertThat;
 
 class AccountImplTest {
 
@@ -18,7 +18,7 @@ class AccountImplTest {
     sut.deposit(100);
 
     // then
-    AccountAssert.assertThat(sut).hasBalance(100);
+    assertThat(sut).hasBalance(100);
   }
 
   @Test
@@ -30,7 +30,7 @@ class AccountImplTest {
     sut.withdraw(50);
 
     // then
-    AccountAssert.assertThat(sut).hasBalance(50);
+    assertThat(sut).hasBalance(50);
   }
 
   @Test
@@ -43,7 +43,7 @@ class AccountImplTest {
 
     // then
     assertThat(exception).isNotNull();
-    assertThat(exception.getMessage()).contains("funds");
+    assertThat(exception).hasMessageContaining("funds");
   }
 
   @Test
@@ -56,7 +56,7 @@ class AccountImplTest {
     sut.transfer(another, 50);
 
     // then
-    assertEquals(150, sut.balance());
-    assertEquals(50, another.balance());
+    assertThat(sut).hasBalance(150);
+    assertThat(another).hasBalance(50);
   }
 }
