@@ -11,7 +11,7 @@ class AccountImplTest {
   private final Account sut = new AccountImpl();
 
   @Test
-  void test1() {
+  void depositingIncreasesTheBalance() {
     // given
 
     // when
@@ -24,7 +24,7 @@ class AccountImplTest {
   }
 
   @Test
-  void test1a() {
+  void withdrawingDecreasesTheBalance() {
     // given
     sut.deposit(100);
 
@@ -38,7 +38,7 @@ class AccountImplTest {
   }
 
   @Test
-  void test2() {
+  void withdrawingIsNotPossibleWithInsufficientFunds() {
     // given
     sut.deposit(50);
 
@@ -51,7 +51,7 @@ class AccountImplTest {
   }
 
   @Test
-  void test3() {
+  void itsPossibleToTransferMoneyFromOneAccountToAnother() {
     // given
     Account another = new AccountImpl();
     sut.deposit(200);
