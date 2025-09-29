@@ -15,7 +15,7 @@ final class AccountImpl implements Account {
 
   @Override
   public void withdraw(final int amount) {
-    if(amount > balance) throw new IllegalArgumentException("");
+    if(amount > balance) throw new IllegalArgumentException("insufficient funds");
     balance -= amount;
   }
 

@@ -2,41 +2,42 @@ package de.fourteen.account;
 
 import org.junit.jupiter.api.Test;
 
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
-class AccountTest {
+class AccountImplTest {
 
-  private final Account account = new AccountImpl();
+  private final Account sut = new AccountImpl();
 
   @Test
   void test1() {
-    account.deposit(100);
-    if (account.balance() != 100) {
+    sut.deposit(100);
+    if (sut.balance() != 100) {
       fail("Balance not correct");
     }
-    account.withdraw(50);
-    if (account.balance() != 50) {
+    sut.withdraw(50);
+    if (sut.balance() != 50) {
       fail("Balance not correct after withdraw");
     }
   }
 
   @Test
   void test2() {
-    account.deposit(50);
+    sut.deposit(50);
     try {
-      account.withdraw(100);
+      sut.withdraw(100);
       fail("Expected exception not thrown");
     } catch (RuntimeException e) {
-      assertTrue(e.getMessage().contains("funds"));
+      assertThat(e.getMessage()).contains("funds");
     }
   }
 
   @Test
   void test3() {
     Account another = new AccountImpl();
-    account.deposit(200);
-    account.transfer(another, 50);
-    assertEquals(150, account.balance());
+    sut.deposit(200);
+    sut.transfer(another, 50);
+    assertEquals(150, sut.balance());
     assertEquals(50, another.balance());
   }
 }
