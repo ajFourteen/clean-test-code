@@ -18,9 +18,7 @@ class AccountImplTest {
     sut.deposit(100);
 
     // then
-    if (sut.balance() != 100) {
-      fail("Balance not correct");
-    }
+    AccountAssert.assertThat(sut).hasBalance(100);
   }
 
   @Test
@@ -32,9 +30,7 @@ class AccountImplTest {
     sut.withdraw(50);
 
     // then
-    if (sut.balance() != 50) {
-      fail("Balance not correct after withdraw");
-    }
+    AccountAssert.assertThat(sut).hasBalance(50);
   }
 
   @Test
